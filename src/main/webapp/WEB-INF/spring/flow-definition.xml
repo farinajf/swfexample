@@ -23,6 +23,6 @@
 
     <!-- Determine the next action to be taken for the flow -->
     <flow:flow-registry id="loginFlowRegistry">
-        <flow:flow-location id="loginFlow" path="/spring/flows/login-low.xml"/>
+        <flow:flow-location id="loginFlow" path="/WEB-INF/spring/flows/login-flow.xml"/>
     </flow:flow-registry>
 </beans>
