@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:flow="http://www.springframework.org/schema/webflow-config"
+       xsi:schemaLocation="http://www.springframework.org/schema/webflow-config
+                           http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.4.xsd
+                           http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
+    <!-- FlowHandlerMapping is responsible for creating the appropriate URLs for
+    all the flows defined in the application -->
+    <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+        <property name="flowRegistry" ref="loginFlowRegistry"/>
+    </bean>
+
+    <!-- FlowHandlerAdapter encapsulates the actual flow and delegates the spscific
+    flows to be handled by the Spring Flow Controllers -->
+    <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+        <property name="flowExecutor" ref="loginFlowExecutor"/>
+    </bean>
+
+    <!-- Orchestrator -->
+    <flow:flow-executor id="loginFlowExecutor" flow-registry="loginFlowRegistry"/>
+
+    <!-- Determine the next action to be taken for the flow -->
+    <flow:flow-registry id="loginFlowRegistry">
+        <flow:flow-location id="loginFlow" path="/spring/flows/login-low.xml"/>
+    </flow:flow-registry>
+</beans>
